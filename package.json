@@ -1,0 +1,34 @@
+{
+  "name": "obsidian-crowfallbot",
+  "version": "1.0.0",
+  "description": "Community Discord Bot for Crowfall. Powered by Node, mySQL and Discord.js library",
+  "main": "wikiBot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheObsidian/crowfallBot"
+  },
+  "keywords": [
+    "Discord.js",
+    "Crowfall",
+    "Node",
+    "mySQL",
+    "Bot"
+  ],
+  "author": "Scree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheObsidian/crowfallBot/issues"
+  },
+  "homepage": "https://github.com/TheObsidian/crowfallBot#readme",
+  "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js#indev",
+    "moment": "~2.14.1",
+    "request": "^2.78.0",
+    "rethinkdbdash": "~2.3.21",
+    "twit": "^2.2.5"
+
+  }
+}
