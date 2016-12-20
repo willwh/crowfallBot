@@ -16,6 +16,7 @@ crowfallBot.commands = new Discord.Collection();
 crowfallBot.aliases = new Discord.Collection();
 crowfallBot.settings = new Discord.Collection();
 crowfallBot.powers = new Discord.Collection();
+crowfallBot.archetypes = new Discord.Collection();
 
 let commandLoader = function(currentPath) {
   log("Searching for Commands... " + currentPath);
@@ -54,6 +55,23 @@ let powersLoader = function(currentPath) {
 };
 powersLoader('./powers');
 
+let archetypesLoader = function(currentPath) {
+  log("Researching Archetypes... " + currentPath);
+  let files = fs.readdirSync(currentPath);
+  for (let i in files) {
+    let currentFile = currentPath + '/' + files[i];
+    let stats = fs.statSync(currentFile);
+    if (stats.isFile()) {
+      let loader = require(`${currentFile}`);
+      log(`Loading Archetype: ${loader.archetype.name} ...`);
+      crowfallBot.archetypes.set(loader.archetype.name.toLowerCase(), loader);
+    } else if (stats.isDirectory()) {
+      archetypesLoader(currentFile);
+    }
+  }
+};
+archetypesLoader('./archetypes');
+
 
 crowfallBot.on("message", msg => {
   if (!msg.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
@@ -70,6 +88,7 @@ crowfallBot.on("message", msg => {
   if (cmd) {
     if (perms < cmd.conf.permLevel) return msg.channel.sendMessage(`${msg.author.toString()} you are not authorized to run ${config.prefix}${command}`);
     cmd.run(crowfallBot, msg, params, perms, r);
+    msg.delete(10000);
   }
 });
 
@@ -120,6 +139,7 @@ crowfallBot.on("guildMemberAdd", (member) => {
   log(`${member.user.username} joined ${member.guild.name}`);
   let crowfallUser = member.nickname ? member.nickname : member.user.username;
   let guildSettings = crowfallBot.settings.get(member.guild.id);
+  if (!guildSettings) return log("Error with getting guildSettings");
   let defaultChannel = member.guild.channels.get(guildSettings.botDefaultChannel) ? member.guild.channels.get(guildSettings.botDefaultChannel) : member.guild.defaultChannel;
 
   r.table("crowfallUsers")
@@ -156,8 +176,24 @@ crowfallBot.on('guildMemberRemove', (member) => {
   log(`${member.user.username} left ${member.guild.name}`);
 })
 
-crowfallBot.on("error", console.error);
-crowfallBot.on("warn", console.warn);
+crowfallBot.on("error", (err) => {
+  log(error)
+});
+
+crowfallBot.on("warn", (warn) => {
+  log(warn)
+});
+
+crowfallBot.on("disconnect", (disconnect) => {
+  log(disconnect);
+  process.exit();
+});
+
+crowfallBot.on("reconnecting", (restart) => {
+  log(restart);
+  process.exit();
+});
+
 crowfallBot.login(config.botToken);
 
 //functions library

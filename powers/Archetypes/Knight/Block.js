@@ -1,6 +1,7 @@
 exports.power = {
   name: "Block", //name of power
-  owner: "Knight", //archetype/discipline
+  archetype: "Knight", //archetype/discipline
+  discipline: false,
   bar: "Primary", //primary, secondary, stealth, etc
   type: "Buff", //buff, attack, c-power
   cast_time: "Instant", //time to cast

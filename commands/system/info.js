@@ -17,7 +17,7 @@ exports.run = (bot, msg, params, perms, r = []) => {
     embed: {
       color: 11141396,
       title: `Crowfall Community Bot Statistics`,
-      description: 'Powered by Discord.js v${Discord.version}',
+      description: `Powered by Discord.js v${Discord.version}`,
       thumbnail: {
         url: bot.user.avatarURL,
         height: 150,
@@ -59,14 +59,19 @@ exports.run = (bot, msg, params, perms, r = []) => {
           inline: false
         },
         {
-          name: `Get Crowfall Bot`,
+          name: `CrowfallBot`,
           value: "Want it on your server? Learn more and invite it at [https://crowfall.wiki](https://crowfall.wiki)​\n\u200b",
-          inline: true
+          inline: false
+        },
+        {
+          name: '\u200b',
+          value: '\u200b',
+          inline: false
         }
       ],
       footer: {
-        icon_url: creator.avatarURL,
-        text: `Programmed by @Scree#7438`
+        icon_url: bot.user.avatarURL,
+        text: `https://crowfall.wiki`
       }
     }
   }

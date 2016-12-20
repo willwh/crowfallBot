@@ -1,6 +1,7 @@
 exports.power = {
   name: "Resolve", //name of power
-  owner: "Knight", //archetype/discipline
+  archetype: "Knight", //archetype
+  discipline: false, //discipline
   bar: false, //primary, secondary, stealth, etc
   type: "Passive", //buff, attack, passive, c-power
   cast_time: false, //time to cast

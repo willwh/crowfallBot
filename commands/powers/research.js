@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 
 exports.run = (bot, msg, params, perms, r = []) => {
   let researchPower = params.join(" ").trim().toLowerCase();
+
   let referencePower = bot.powers.get(researchPower);
   //lets check if this might be an archetype instead
   if (referencePower) {
@@ -26,36 +27,76 @@ exports.run = (bot, msg, params, perms, r = []) => {
     //send out the specific power!
     return msg.channel.sendEmbed(theEmbed).catch(console.log);
   } else {
-    console.div(bot.powers.filter(p => p.power.archetype.toLowerCase() === params[0].toLowerCase()));
-    let archetypePowers = bot.powers.filter(p => p.power.archetype.toLowerCase() === params[0].toLowerCase());
-    let disciplinePowers = bot.powers.filter(p => p.power.discipline.toLowerCase() === params[0].toLowerCase());
+
+    let archetypePowers = bot.powers.filter(function(s) {
+      if (s.power.archetype && s.power.archetype.toLowerCase() === params[0].toLowerCase()) {
+        return true;
+      }
+      return false;
+    })
+
+    let disciplinePowers = bot.powers.filter(function(s) {
+      if (s.power.discipline && s.power.discipline.toLowerCase() === params[0].toLowerCase()) {
+        return true;
+      }
+      return false;
+    })
+
     //begin archetype results printout
-    if (archetypePowers > 0) {
+    if (archetypePowers.size > 0) {
       let powersList = [];
+      let archetypeName = "";
       archetypePowers.forEach(function(onePower) {
-        powersList.push(onePower.powers.name);
+        powersList.push(onePower.power.name);
+        archetypeName = onePower.power.archetype;
       })
+      let archetypeDetails = bot.archetypes.get(archetypeName.toLowerCase());
       let archetypeResearch = new Discord.RichEmbed();
-      archetypeResearch.setTitle(`${params.trim().join(" ")} Archetype Powers List`);
+      if (archetypeDetails.archetype.promotion === true) {
+        archetypeResearch.setTitle(`The ${archetypeName} Promotion`);
+      } else {
+        archetypeResearch.setTitle(`The ${archetypeName}`);
+      }
+      if (archetypeDetails.archetype.icon) archetypeResearch.setThumbnail(archetypeDetails.archetype.icon);
       archetypeResearch.setColor(11141396);
       archetypeResearch.setFooter("https://crowfall.wiki", bot.user.avatarURL);
-      archetypeResearch.setDescription(powersList.join(", "));
+      if (archetypeDetails.archetype.description === false) archetypeResearch.setDescription("TBD");
+      if (archetypeDetails.archetype.description) archetypeResearch.setDescription(archetypeDetails.archetype.description);
+      archetypeResearch.addField("Role", archetypeDetails.archetype.role, true);
+      archetypeResearch.addField("Race", archetypeDetails.archetype.race, true);
+      if (archetypeDetails && archetypeDetails.length > 0) archetypeResearch.addField("Available Promotions", archetypeDetails.archetype.promotions.join(", "), false);
+      archetypeResearch.addField("Researchable Powers", powersList.join(", "), false);
+      archetypeResearch.addField('\u200b', '\u200b', false);
       return msg.channel.sendEmbed(archetypeResearch).catch(console.log);
     }
     //end archetype results printout
     //begin discipline results printout
-    if (disciplinePowers.size > 0) {
-      let powersList = [];
-      archetypePowers.forEach(function(onePower) {
-        powersList.push(onePower.powers.name);
-      })
-      let disciplineResearch = new Discord.RichEmbed();
-      disciplineResearch.setTitle(`${params.trim().join(" ")} Archetype Powers List`);
-      disciplineResearch.setColor(11141396);
-      disciplineResearch.setFooter("https://crowfall.wiki", bot.user.avatarURL);
-      disciplineResearch.setDescription(powersList.join(", "));
-      return msg.channel.sendEmbed(disciplineResearch).catch(console.log);
-    }
+    /*    if (disciplinePowers.size > 0) {
+          let powersList = [];
+          let archetypeName = "";
+          disciplinePowers.forEach(function(onePower) {
+            powersList.push(onePower.power.name);
+            disciplineName = onePower.power.archetype;
+          })
+          let disciplineDetails = bot.archetypes.get(archetypeName.toLowerCase());
+          let disciplineResearch = new Discord.RichEmbed();
+          if (archetypeDetails.archetype.promotion === true) {
+            archetypeResearch.setTitle(`The ${archetypeName} Promotion`);
+          } else {
+            archetypeResearch.setTitle(`The ${archetypeName}`);
+          }
+          if (archetypeDetails.archetype.icon) archetypeResearch.setThumbnail(archetypeDetails.archetype.icon);
+          archetypeResearch.setColor(11141396);
+          archetypeResearch.setFooter("https://crowfall.wiki", bot.user.avatarURL);
+          if (archetypeDetails.archetype.description === false) archetypeResearch.setDescription("TBD");
+          if (archetypeDetails.archetype.description) archetypeResearch.setDescription(archetypeDetails.archetype.description);
+          archetypeResearch.addField("Role", archetypeDetails.archetype.role, true);
+          archetypeResearch.addField("Race", archetypeDetails.archetype.race, true);
+          if (archetypeDetails && archetypeDetails.length > 0) archetypeResearch.addField("Available Promotions", archetypeDetails.archetype.promotions.join(", "), false);
+          archetypeResearch.addField("Researchable Powers", powersList.join(", "), false);
+          archetypeResearch.addField('\u200b', '\u200b', false);
+          return msg.channel.sendEmbed(archetypeResearch).catch(console.log);
+       }*/
     //end discipline results printout
     //couldn't find anything. return error message
     return msg.channel.sendMessage("Could not find any Powers, Archetypes or Disciplines associated with that research request!");

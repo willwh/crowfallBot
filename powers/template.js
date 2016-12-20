@@ -2,7 +2,7 @@
 exports.power = {
   name: "Murder", //name of power (REQUIRED)
   archetype: "Assassin", //if belongs by an archetype enter discipline name, otherwise false
-  discipline: null, //if belongs by a discipline enter discipline name, otherwise false
+  discipline: false, //if belongs by a discipline enter discipline name, otherwise false
   bar: "Stealth", //primary, secondary, stealth, etc
   type: "Attack", //buff, attack, passive, c-power, etc
   cast_time: "1", //time to cast, this is a string not a number, can also be "instant"

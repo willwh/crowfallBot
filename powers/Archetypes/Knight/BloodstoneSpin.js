@@ -1,6 +1,7 @@
 exports.power = {
   name: "Bloodstone Spin", //name of power
-  owner: "Knight", //archetype/discipline
+  archetype: "Knight", //archetype
+  discipline: false, //discipline
   bar: "Primary", //primary, secondary, stealth, etc
   type: "Attack", //buff, attack, c-power
   cast_time: "Instant", //time to cast
