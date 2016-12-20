@@ -2,10 +2,10 @@
 exports.power = {
   name: "Cancel Combo",
   archetype: false,
-  discipline: null,
+  discipline: false,
   bar: "Primary",
   key_binding: null,
-  type: "cancel",
+  type: "Cancel",
   cast_time: "Instant",
   duration: false,
   lifetime: false, //seems like a secondary duration on some powers, false if not specified
@@ -14,5 +14,5 @@ exports.power = {
   range: false,
   cost: false,
   tooltip: "Cancels the current combo power being executed.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };

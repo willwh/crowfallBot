@@ -1,10 +1,9 @@
-
 exports.power = {
   name: "Colossus Smash",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
-  key_binding: null,
+  key_binding: false,
   type: "Attack",
   cast_time: "Instant",
   duration: false,
@@ -14,5 +13,5 @@ exports.power = {
   range: "5.5 Meters",
   cost: "17 Fury",
   tooltip: "Leap forward striking twice for 405 - 494 + 45% Weapon Damage.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };

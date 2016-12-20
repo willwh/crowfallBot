@@ -1,10 +1,9 @@
-
 exports.power = {
   name: "Charge",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
-  key_binding: null,
+  key_binding: false,
   type: "Attack",
   cast_time: "Instant",
   duration: false,
@@ -14,5 +13,5 @@ exports.power = {
   range: "30 Meters",
   cost: "13 Fury",
   tooltip: "Charge toward your target inflicting #N/A - #N/A + #N/A% Weapon Damage.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };

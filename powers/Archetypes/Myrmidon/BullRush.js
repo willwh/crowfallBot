@@ -2,7 +2,7 @@
 exports.power = {
   name: "Bull Rush",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
   key_binding: "1",
   type: "Attack",
@@ -14,5 +14,5 @@ exports.power = {
   range: "7 Meters",
   cost: "33 Fury",
   tooltip: "Charge forward dragging enemies along with you and causing #N/A - #N/A + #N/A% Weapon Damage. Enemies are flung into the air if the attack is over 65% charged.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };

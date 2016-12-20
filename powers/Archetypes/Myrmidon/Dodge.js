@@ -1,8 +1,7 @@
-
 exports.power = {
   name: "Dodge",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
   key_binding: "RMB",
   type: "Attack",
@@ -14,6 +13,5 @@ exports.power = {
   range: "4 Meters",
   cost: "50 Stamina",
   tooltip: "Leap away causing #N/A - #N/A + #N/A% Weapon Damage to nearby enemies where you land.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };
-

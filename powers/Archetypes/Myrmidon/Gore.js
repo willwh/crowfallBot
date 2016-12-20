@@ -1,10 +1,9 @@
-
 exports.power = {
   name: "Gore",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
-  key_binding: null,
+  key_binding: false,
   type: "Attack",
   cast_time: "Instant",
   duration: "20 seconds",
@@ -14,6 +13,5 @@ exports.power = {
   range: "5.5 Meters",
   cost: "34 Fury",
   tooltip: "Strike overhead with both axes before continuing the carnage with a second bloody slice, inflicting 897 - 1097 + 100% Weapon Damage for each hit. If you connect, recover 5 Fury per second for 20 seconds.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };
-

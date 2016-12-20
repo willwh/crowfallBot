@@ -1,8 +1,8 @@
 
 exports.power = {
-  name: "ArcingSlash",
+  name: "Arcing Slash",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
   key_binding: "4",
   type: "Attack",
@@ -14,5 +14,5 @@ exports.power = {
   range: "5.5 Meters",
   cost: "19 Fury",
   tooltip: "Slash upward violently inflicting 469 - 573 + 52% Weapon Damage.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };

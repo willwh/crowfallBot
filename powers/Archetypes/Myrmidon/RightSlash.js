@@ -1,8 +1,7 @@
-
 exports.power = {
   name: "Right Slash",
   archetype: "Myrmidon",
-  discipline: null,
+  discipline: false,
   bar: "Primary",
   key_binding: "LMB",
   type: "Attack",
@@ -14,5 +13,5 @@ exports.power = {
   range: "5.5 Meters",
   cost: "9 Fury",
   tooltip: "Attack with your right weapon for 341 - 417 + 38% Weapon Damage.",
-  icon: "https://crowfall.wiki/url-to-icon"
+  icon: false
 };
