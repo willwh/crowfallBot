@@ -4,7 +4,7 @@ exports.power = {
   archetype: false,
   discipline: false,
   bar: "Primary",
-  key_binding: null,
+  key_binding: false,
   type: "Cancel",
   cast_time: "Instant",
   duration: false,
