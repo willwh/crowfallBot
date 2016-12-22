@@ -5,7 +5,7 @@ exports.archetype = {
   type: false,
   role: "Tank",
   race: "Human",
-  promotion: ["Swordsman", "Sentinel", "Crusader"],
+  promotions: ["Swordsman", "Sentinel", "Crusader"],
   description: false,
   icon: false
 };

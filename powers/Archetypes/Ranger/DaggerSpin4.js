@@ -1,5 +1,5 @@
 exports.power = {
-  name: "Dagger Spin 3",
+  name: "Dagger Spin 4",
   archetype: "Ranger",
   discipline: false,
   bar: "Melee",

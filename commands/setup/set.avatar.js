@@ -4,14 +4,14 @@ exports.run = (bot, msg, params, perms, r = []) => {
 };
 
 exports.conf = {
-  enabled: true,
-  guildOnly: true,
+  enabled: false,
+  guildOnly: false,
   aliases: [],
   permLevel: 4
 };
 
 exports.help = {
   name: "set.avatar",
-  description: "Displays all current permissions setup for this server",
+  description: "Sets Avatar (One Time Use)",
   usage: "set.avatar https://avatarurladdress.com"
 };

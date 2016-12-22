@@ -18,6 +18,8 @@ crowfallBot.settings = new Discord.Collection();
 crowfallBot.powers = new Discord.Collection();
 crowfallBot.archetypes = new Discord.Collection();
 
+
+//Loads ALL Bot Commands
 let commandLoader = function(currentPath) {
   log("Searching for Commands... " + currentPath);
   let files = fs.readdirSync(currentPath);
@@ -38,6 +40,7 @@ let commandLoader = function(currentPath) {
 };
 commandLoader('./commands');
 
+//Loads All Powers For All Disciplines and Archetypes
 let powersLoader = function(currentPath) {
   log("Researching Powers... " + currentPath);
   let files = fs.readdirSync(currentPath);
@@ -55,6 +58,7 @@ let powersLoader = function(currentPath) {
 };
 powersLoader('./powers');
 
+//Loads All Archetype & Promotion Archetype General Information
 let archetypesLoader = function(currentPath) {
   log("Researching Archetypes... " + currentPath);
   let files = fs.readdirSync(currentPath);
@@ -88,7 +92,10 @@ crowfallBot.on("message", msg => {
   if (cmd) {
     if (perms < cmd.conf.permLevel) return msg.channel.sendMessage(`${msg.author.toString()} you are not authorized to run ${config.prefix}${command}`);
     cmd.run(crowfallBot, msg, params, perms, r);
-    msg.delete(10000);
+    msg.delete(5000)
+      .catch(function(err) {
+        log("Unable to Delete Message (Bot Lacks Permissions)");
+      });
   }
 });
 
