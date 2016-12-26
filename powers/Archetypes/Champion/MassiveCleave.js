@@ -1,6 +1,6 @@
 exports.power = {
-  name: "Side Strike",
-  archetype: "Legionnaire",
+  name: "Massive Cleave",
+  archetype: "Champion",
   discipline: false,
   bar: "Primary",
   type: "Attack",
@@ -10,7 +10,7 @@ exports.power = {
   target: "Cone",
   velocity: false,
   range: "5 Meters",
-  cost: false,
-  tooltip: "Strike in front of you for 616 - 752 + 68% Weapon Damage.",
+  cost: "15 Rage",
+  tooltip: "Strike in front of you for 1417 - 1917 + 167% Weapon Damage.",
   icon: false
 };

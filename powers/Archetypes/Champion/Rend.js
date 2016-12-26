@@ -1,6 +1,6 @@
 exports.power = {
-  name: "Side Strike",
-  archetype: "Legionnaire",
+  name: "Rend",
+  archetype: "Champion",
   discipline: false,
   bar: "Primary",
   type: "Attack",
@@ -10,7 +10,7 @@ exports.power = {
   target: "Cone",
   velocity: false,
   range: "5 Meters",
-  cost: false,
-  tooltip: "Strike in front of you for 616 - 752 + 68% Weapon Damage.",
+  cost: "25 Rage",
+  tooltip: "Rend in front of you, dealing 2153 - 2913 + 253% Weapon Damage. Applies a Severe Bleed to all hit.",
   icon: false
 };

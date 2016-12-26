@@ -1,6 +1,6 @@
 exports.power = {
-  name: "Side Strike",
-  archetype: "Legionnaire",
+  name: "Kick Sand",
+  archetype: "Champion",
   discipline: false,
   bar: "Primary",
   type: "Attack",
@@ -10,7 +10,7 @@ exports.power = {
   target: "Cone",
   velocity: false,
   range: "5 Meters",
-  cost: false,
-  tooltip: "Strike in front of you for 616 - 752 + 68% Weapon Damage.",
+  cost: "15 Rage",
+  tooltip: "Kick Sand at nearby enemies, blinding them for 4 seconds while dealing 1515 - 2049 + 178% Weapon Damage.",
   icon: false
 };

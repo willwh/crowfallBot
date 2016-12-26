@@ -1,6 +1,6 @@
 exports.power = {
-  name: "Side Strike",
-  archetype: "Legionnaire",
+  name: "Giant Smash",
+  archetype: "Champion",
   discipline: false,
   bar: "Primary",
   type: "Attack",
@@ -11,6 +11,6 @@ exports.power = {
   velocity: false,
   range: "5 Meters",
   cost: false,
-  tooltip: "Strike in front of you for 616 - 752 + 68% Weapon Damage.",
+  tooltip: "Strike in front of you for 851 - 1152 + 100% Weapon Damage, generating 2 Rage if you hit.",
   icon: false
 };

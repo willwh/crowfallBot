@@ -1,6 +1,6 @@
 exports.power = {
-  name: "Side Strike",
-  archetype: "Legionnaire",
+  name: "Disarming Shout",
+  archetype: "Champion",
   discipline: false,
   bar: "Primary",
   type: "Attack",
@@ -10,7 +10,7 @@ exports.power = {
   target: "Cone",
   velocity: false,
   range: "5 Meters",
-  cost: false,
-  tooltip: "Strike in front of you for 616 - 752 + 68% Weapon Damage.",
+  cost: "15 Rage",
+  tooltip: "Suppress enemies, disabling their powers for 6 seconds. Deals 1402 - 1896 + 165% Weapon Damage.",
   icon: false
 };

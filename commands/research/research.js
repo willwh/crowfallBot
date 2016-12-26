@@ -105,12 +105,13 @@ exports.run = (bot, msg, params, perms, r = []) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [''],
+  aliases: [],
   permLevel: 0
 };
 
 exports.help = {
   name: "research",
   description: "Provides information about a Crowfall power (by name)",
+  group: 'Research',
   usage: "research power name"
 };

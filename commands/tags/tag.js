@@ -134,5 +134,6 @@ exports.conf = {
 exports.help = {
   name: "tag",
   description: "Provides pre-set information set by a Discord guild (server) staff.",
+  group: 'Tags',
   usage: "tag"
 };

@@ -3,7 +3,7 @@ exports.power = {
   archetype: "Ranger",
   discipline: false,
   bar: "Ranged",
-  type: "Attack",
+  type: "Buff",
   cast_time: "Instant",
   duration: "35 Seconds",
   lifetime: false,

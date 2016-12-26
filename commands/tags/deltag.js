@@ -40,12 +40,13 @@ exports.run = (bot, msg, params, perms, r = []) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: [],
+  aliases: ['removetag', 'deletetag'],
   permLevel: 1
 };
 
 exports.help = {
   name: "deltag",
   description: "Deletes information previously set by a Discord guild (server) staff member.",
+  group: 'Tags',
   usage: "deltag"
 };

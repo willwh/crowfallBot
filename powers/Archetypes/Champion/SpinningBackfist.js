@@ -1,6 +1,6 @@
 exports.power = {
-  name: "Side Strike",
-  archetype: "Legionnaire",
+  name: "Spinning Backfist",
+  archetype: "Champion",
   discipline: false,
   bar: "Primary",
   type: "Attack",
@@ -10,7 +10,7 @@ exports.power = {
   target: "Cone",
   velocity: false,
   range: "5 Meters",
-  cost: false,
-  tooltip: "Strike in front of you for 616 - 752 + 68% Weapon Damage.",
+  cost: "10 Rage",
+  tooltip: "Spin in front of you dealing 1039 - 1405 + 122% Weapon Damage as Crushing Damage.",
   icon: false
 };

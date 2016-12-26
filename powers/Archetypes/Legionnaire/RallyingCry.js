@@ -1,5 +1,5 @@
 exports.power = {
-  name: "Battle Cry",
+  name: "Rallying Cry",
   archetype: "Legionnaire",
   discipline: false,
   bar: "Primary",
@@ -10,7 +10,7 @@ exports.power = {
   target: "Group",
   velocity: false,
   range: false,
-  cost: "15 Rage",
-  tooltip: "Removes all movement impairing effects. Increases group movement speed by 10%",
+  cost: false,
+  tooltip: "Instantly Heal up to 5 group members and yourself for 6750 - 8250. Applies Rally to group members which increases Critical Hit Chance by 15%.",
   icon: false
 };
