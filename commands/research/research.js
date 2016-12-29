@@ -3,36 +3,40 @@ const Discord = require('discord.js');
 exports.run = (bot, msg, params, perms, r = []) => {
   //let researchPower = params.join(" ").trim().toLowerCase();
   let searchRequest = params.join(" ").trim().toLowerCase();
-
   let powerSearch = bot.powers.get(searchRequest);
   let archetypeSearch = bot.archetypes.get(searchRequest);
+  let guildSettings = msg.guild ? bot.settings.get(msg.guild.id) : false;
+  let theorycraftMode = guildSettings.theorycraftMode ? guildSettings.theorycraftMode : false;
   //let disciplineSearch = bot.disciplines.get(searchRequest);
   //let craftingSearch = bot.crafting.get(searchRequest);
-
   //lets check if this might be an archetype instead
+
   if (powerSearch) {
     let theEmbed = new Discord.RichEmbed();
     theEmbed.setColor(11141396);
-    theEmbed.setTitle(powerSearch.power.name);
+    let powerOwner = powerSearch.power.archetype ? powerSearch.power.archetype : powerSearch.power.discipline;
+    if (!theorycraftMode && powerOwner) {
+      theEmbed.setTitle(`${powerOwner} Power: ${powerSearch.power.name}`)
+    } else {
+      theEmbed.setTitle(powerSearch.power.name);
+    }
     if (powerSearch.power.tooltip) theEmbed.setDescription(powerSearch.power.tooltip);
     if (powerSearch.power.icon) theEmbed.setThumbnail(powerSearch.power.icon);
-    if (powerSearch.power.archetype) theEmbed.addField("Archetype", powerSearch.power.archetype, true);
-    if (powerSearch.power.discipline) theEmbed.addField("Discipline", powerSearch.power.discipline, true);
-    if (powerSearch.power.bar) theEmbed.addField("Power Bar", powerSearch.power.bar, true);
-    if (powerSearch.power.type) theEmbed.addField("Power Type", powerSearch.power.type, true);
-    if (powerSearch.power.cost) theEmbed.addField("Power Cost", powerSearch.power.cost, true);
-    if (powerSearch.power.cast_time) theEmbed.addField("Cast Time", powerSearch.power.cast_time, true);
-    if (powerSearch.power.target) theEmbed.addField("Targeting Type", powerSearch.power.target, true);
-    if (powerSearch.power.duration) theEmbed.addField("Power Duration", powerSearch.power.duration, true);
-    if (powerSearch.power.lifetime) theEmbed.addField("Power Lifetime", powerSearch.power.lifetime, true);
-    if (powerSearch.power.range) theEmbed.addField("Power Range", powerSearch.power.range, true);
-    if (powerSearch.power.velocity) theEmbed.addField("Power Velocity", powerSearch.power.velocity, true);
-    theEmbed.addField('\u200b', '\u200b', false);
+    if (theorycraftMode && powerSearch.power.archetype) theEmbed.addField("Archetype", powerSearch.power.archetype, true);
+    if (theorycraftMode && powerSearch.power.discipline) theEmbed.addField("Discipline", powerSearch.power.discipline, true);
+    if (theorycraftMode && powerSearch.power.bar) theEmbed.addField("Power Bar", powerSearch.power.bar, true);
+    if (theorycraftMode && powerSearch.power.type) theEmbed.addField("Power Type", powerSearch.power.type, true);
+    if (theorycraftMode && powerSearch.power.cost) theEmbed.addField("Power Cost", powerSearch.power.cost, true);
+    if (theorycraftMode && powerSearch.power.cast_time) theEmbed.addField("Cast Time", powerSearch.power.cast_time, true);
+    if (theorycraftMode && powerSearch.power.target) theEmbed.addField("Targeting Type", powerSearch.power.target, true);
+    if (theorycraftMode && powerSearch.power.duration) theEmbed.addField("Power Duration", powerSearch.power.duration, true);
+    if (theorycraftMode && powerSearch.power.lifetime) theEmbed.addField("Power Lifetime", powerSearch.power.lifetime, true);
+    if (theorycraftMode && powerSearch.power.range) theEmbed.addField("Power Range", powerSearch.power.range, true);
+    if (theorycraftMode && powerSearch.power.velocity) theEmbed.addField("Power Velocity", powerSearch.power.velocity, true);
     theEmbed.setFooter("https://crowfall.wiki", bot.user.avatarURL);
     //send out the specific power!
     return msg.channel.sendEmbed(theEmbed).catch(console.log);
   }
-
   //proceed if search request was an archetype.
   if (archetypeSearch) {
     let archetypePowers = bot.powers.filter(function(s) {
@@ -53,11 +57,10 @@ exports.run = (bot, msg, params, perms, r = []) => {
     archetypeResearch.setFooter("https://crowfall.wiki | * marked fields can be found with cf!research", bot.user.avatarURL);
     if (archetypeSearch.archetype.description === false) archetypeResearch.setDescription("Coming Soon.");
     if (archetypeSearch.archetype.description) archetypeResearch.setDescription(archetypeSearch.archetype.description);
-    archetypeResearch.addField("Role", archetypeSearch.archetype.role, true);
-    archetypeResearch.addField("Race", archetypeSearch.archetype.race, true);
-    if (archetypeSearch && archetypeSearch.archetype.promotions && archetypeSearch.archetype.promotions.length > 0) archetypeResearch.addField("Available Promotions*", archetypeSearch.archetype.promotions.join(", "), false);
+    if (theorycraftMode) archetypeResearch.addField("Role", archetypeSearch.archetype.role, true);
+    if (theorycraftMode) archetypeResearch.addField("Race", archetypeSearch.archetype.race, true);
+    if (theorycraftMode && archetypeSearch && archetypeSearch.archetype.promotions && archetypeSearch.archetype.promotions.length > 0) archetypeResearch.addField("Available Promotions*", archetypeSearch.archetype.promotions.join(", "), false);
     if (powersList.length > 0) archetypeResearch.addField("Powers List*", powersList.join(", "), false);
-    archetypeResearch.addField('\u200b', '\u200b', false);
     return msg.channel.sendEmbed(archetypeResearch).catch(console.log);
   }
   //end archetype results printout
@@ -93,13 +96,11 @@ exports.run = (bot, msg, params, perms, r = []) => {
             archetypeResearch.addField("Race", archetypeDetails.archetype.race, true);
             if (archetypeDetails && archetypeDetails.length > 0) archetypeResearch.addField("Available Promotions", archetypeDetails.archetype.promotions.join(", "), false);
             archetypeResearch.addField("Researchable Powers", powersList.join(", "), false);
-            archetypeResearch.addField('\u200b', '\u200b', false);
             return msg.channel.sendEmbed(archetypeResearch).catch(console.log);
          }*/
   //end discipline results printout
   //couldn't find anything. return error message
   return msg.channel.sendMessage("Could not find any Powers, Archetypes or Disciplines associated with that research request!");
-
 };
 
 exports.conf = {

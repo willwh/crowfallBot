@@ -76,8 +76,12 @@ let archetypesLoader = function(currentPath) {
 archetypesLoader('./archetypes');
 
 crowfallBot.on("message", msg => {
-  let currentPermissions = msg.channel.permissionsFor(crowfallBot.user);
-  if (msg.channel.type === "dm" || currentPermissions.hasPermissions(["SEND_MESSAGES", "EMBED_LINKS"])) {
+  let currentPermissions = false;
+  if (msg.channel.type !== "dm") {
+    currentPermissions = msg.channel.permissionsFor(crowfallBot.user);
+  }
+
+  if (msg.channel.type === "dm" || currentPermissions) {
     if (!msg.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
     let command = msg.content.split(" ")[0].slice(config.prefix.length).toLowerCase();
     let params = msg.content.split(" ").slice(1);
@@ -89,17 +93,18 @@ crowfallBot.on("message", msg => {
     } else if (crowfallBot.aliases.has(command)) {
       cmd = crowfallBot.commands.get(crowfallBot.aliases.get(command));
     }
+    if (cmd && !currentPermissions.hasPermissions(["SEND_MESSAGES", "EMBED_LINKS"]))
+      return msg.author.sendMessage("crowfallBot must have BOTH Send Message and Embed Link permissions to use this command!");
     if (cmd) {
       if (perms < cmd.conf.permLevel) return msg.channel.sendMessage(`${msg.author.toString()} you are not authorized to run ${config.prefix}${command}`);
       cmd.run(crowfallBot, msg, params, perms, r);
       //make sure bot has permissiosn to delete stuff.
-      if (currentPermissions.hasPermission("MANAGE_MESSAGES")) {
+      if (currentPermissions && currentPermissions.hasPermission("MANAGE_MESSAGES")) {
         msg.delete(5000);
       }
     }
-  } else {
-    msg.author.sendMessage("CrowfallBot requires Send Messages and Embed Links permissions to work properly. Contact your server owner and grant it these to use this function!");
   }
+
 
 });
 
@@ -115,20 +120,14 @@ crowfallBot.on("ready", () => {
           let defaultSettings = {
             serverModeratorRole: false,
             serverAdminRole: false,
-            botDefaultChannel: aGuild.defaultChannel.id,
-            welcomeMessage: false,
-            tweetService: false,
-            tweetChannel: aGuild.defaultChannel.id
+            botDefaultChannel: aGuild.defaultChannel.id
           }
           r.table("crowfallSettings")
             .insert({
               id: aGuild.id,
               serverModeratorRole: false,
               serverAdminRole: false,
-              botDefaultChannel: aGuild.defaultChannel.id,
-              welcomeMessage: false,
-              tweetService: false,
-              tweetChannel: aGuild.defaultChannel.id
+              botDefaultChannel: aGuild.defaultChannel.id
             })
             .run()
             .then(function(next) {
