@@ -24,11 +24,10 @@
   },
   "homepage": "https://github.com/TheObsidian/crowfallBot#readme",
   "dependencies": {
-    "discord.js": "github:hydrabolt/discord.js#indev",
+    "discord.js": "github:hydrabolt/discord.js",
     "moment": "~2.14.1",
     "request": "^2.78.0",
     "rethinkdbdash": "~2.3.21",
     "twit": "^2.2.5"
-
   }
 }
