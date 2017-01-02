@@ -4,7 +4,7 @@ const os = require('os');
 
 exports.run = (bot, msg, params, perms, r = []) => {
   let msgarr = [];
-  msgarr.push("Server Owners can invite CrowfallBot to their server by visiting this link: https://discordapp.com/oauth2/authorize?permissions=523329&scope=bot&client_id=205105226380869632");
+  msgarr.push("Server Owners can invite CrowfallBot to their server by visiting this link: https://discordapp.com/oauth2/authorize?permissions=93184&scope=bot&client_id=205105226380869632");
   return msg.channel.sendMessage(msgarr).catch(console.log);
 };
 

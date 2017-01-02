@@ -11,6 +11,6 @@ exports.power = {
   velocity: "40 m/s",
   range: false,
   cost: false,
-  tooltip: "Shoots a fireball towards your reticle that explodes for 368 - 552 + 46% Weapon Damge as Fire Damage.  Applies Sin to anyone damaged",
+  tooltip: "Shoots a fireball towards your reticle that explodes for 368 - 552 + 46% Weapon Damage as Fire Damage.  Applies Sin to anyone damaged.",
   icon: false
 };

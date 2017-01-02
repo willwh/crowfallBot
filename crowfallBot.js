@@ -93,7 +93,7 @@ crowfallBot.on("message", msg => {
     } else if (crowfallBot.aliases.has(command)) {
       cmd = crowfallBot.commands.get(crowfallBot.aliases.get(command));
     }
-    if (cmd && !currentPermissions.hasPermissions(["SEND_MESSAGES", "EMBED_LINKS"]))
+    if (cmd && currentPermissions && !currentPermissions.hasPermissions(["SEND_MESSAGES", "EMBED_LINKS"]))
       return msg.author.sendMessage("crowfallBot must have BOTH Send Message and Embed Link permissions to use this command!");
     if (cmd) {
       if (perms < cmd.conf.permLevel) return msg.channel.sendMessage(`${msg.author.toString()} you are not authorized to run ${config.prefix}${command}`);
